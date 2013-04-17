@@ -37,14 +37,6 @@ NS_LOG_COMPONENT_DEFINE ("RoofnetClickSimulator");
 
 #ifdef NS3_CLICK
 
-void WriteClick (uint8_t node_id, Ptr<Ipv4ClickRouting> clickRouter)
-{
-  char node_name[100];
-  sprintf(node_name, "Node%3d ", node_id);
-  NS_LOG_INFO (node_name);
-  NS_LOG_INFO ("  data queues(s) :\n" << clickRouter->WriteHandler ("data_q", "change_route", "true"));
-}
-
 void ReadClick (uint8_t node_id, Ptr<Ipv4ClickRouting> clickRouter)
 {
   char node_name[100];
@@ -220,7 +212,6 @@ int main (int argc, char *argv[])
 
   // Simulation commands
   for (uint8_t i = 0; i < nWifi; ++i) {
-//    Simulator::Schedule (Seconds (startTime), &WriteClick, (i+1), nodes.Get (i)->GetObject<Ipv4ClickRouting> ());
     Simulator::Schedule (Seconds (endTime), &ReadClick, (i+1), nodes.Get (i)->GetObject<Ipv4ClickRouting> ());
   }
 
